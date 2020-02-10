@@ -1,0 +1,146 @@
+{
+  "apiVersion": "v1",
+  "configuration": [
+    {
+      "name": "client_id",
+      "label": "Client ID",
+      "type": "text",
+      "required": false
+    },
+    {
+      "name": "secret",
+      "label": "Secret",
+      "type": "text",
+      "required": false
+    },
+    {
+      "label": "public_key",
+      "name": "Public Key",
+      "type": "text",
+      "required": false
+    },
+    {
+      "name": "environment",
+      "label": "Environment",
+      "type": "buttonsGroup",
+      "multiplicity": "one",
+      "required": false,
+      "defaultValue": [
+        "auth",
+        "transactions",
+        "balances"
+      ],
+      "typeOptions": {
+        "possibleValues": [
+          {
+            "label": "Sandbox",
+            "name": "sandbox"
+          },
+          {
+            "label": "Development",
+            "name": "development"
+          },
+          {
+            "label": "Production",
+            "name": "production"
+          }
+        ],
+        "allowCustom": true
+      }
+    },
+    {
+      "name": "products",
+      "label": "Products",
+      "type": "buttonsGroup",
+      "multiplicity": "many",
+      "required": false,
+      "defaultValue": [
+        "auth",
+        "transactions",
+        "balances"
+      ],
+      "typeOptions": {
+        "possibleValues": [
+          {
+            "label": "Auth",
+            "name": "auth"
+          },
+          {
+            "label": "Transactions",
+            "name": "transactions"
+          },
+          {
+            "label": "Balances",
+            "name": "balances"
+          }
+        ],
+        "allowCustom": false
+      }
+    },
+    {
+      "name": "webhook",
+      "label": "Webhook URL",
+      "type": "label",
+      "value": "@config.WEBHOOK_URL"
+    }
+  ],
+  "configurationType": "GLOBAL",
+  "deployment": {
+    "profiles": [
+      {
+        "name": "default",
+        "label": "Default",
+        "memory": 256,
+        "description": "Default configuration"
+      }
+    ],
+    "allowMultipleInstances": false
+  },
+  "events": [
+    {
+      "label": "Webhook",
+      "name": "webhook",
+      "description": "When we receive a webhook from Plaid"
+    }
+  ],
+  "functions": [
+    {
+      "label": "HEAD",
+      "name": "_head"
+    },
+    {
+      "label": "OPTIONS",
+      "name": "_options"
+    },
+    {
+      "label": "GET",
+      "name": "_get"
+    },
+    {
+      "label": "POST",
+      "name": "_post"
+    },
+    {
+      "label": "PUT",
+      "name": "_put"
+    },
+    {
+      "label": "DELETE",
+      "name": "_delete"
+    },
+    {
+      "label": "PATCH",
+      "name": "_patch"
+    }
+  ],
+  "icon48": "https://storage.googleapis.com/static.slingrs.io/platform/endpoints/shippo.png <-- fix this",
+  "internal": false,
+  "label": "Plaid",
+  "listeners": [],
+  "name": "plaid",
+  "scripts": [
+    "plaid-helpers.js"
+  ],
+  "status": "ACTIVE",
+  "stores": []
+}
