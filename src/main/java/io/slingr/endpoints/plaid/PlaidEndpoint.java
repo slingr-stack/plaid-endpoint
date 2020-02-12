@@ -18,12 +18,13 @@ import org.apache.log4j.Logger;
 @SlingrEndpoint(name = "plaid", functionPrefix = "_")
 public class PlaidEndpoint extends HttpEndpoint {
 
-    private final String API_URL = "https://sandbox.plaid.com";
-
     private static final Logger logger = Logger.getLogger(PlaidEndpoint.class);
 
     @EndpointConfiguration
     private Json config;
+
+    @EndpointProperty(name = "environment")
+    private String environment;
 
     @EndpointProperty(name = "client_id")
     private String clientId;
@@ -36,7 +37,15 @@ public class PlaidEndpoint extends HttpEndpoint {
 
     @Override
     public String getApiUri() {
-        return API_URL;
+        String url = "";
+        if (environment.equals("sandbox")) {
+            url = "https://sandbox.plaid.com";
+        } else if (environment.equals("development")) {
+            url = "https://development.plaid.com";
+        } else {
+            url = "https://production.plaid.com";
+        }
+        return url;
     }
 
     @EndpointFunction(name = "_get")
@@ -105,9 +114,6 @@ public class PlaidEndpoint extends HttpEndpoint {
         if (body == null) {
             body = Json.map();
         }
-        System.out.println(body);
-        System.out.println(body.contains("count"));
-        System.out.println(clientId);
         if (body.contains("client_id")) {
             body.set("client_id", clientId);
         }
