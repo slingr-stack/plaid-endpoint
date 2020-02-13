@@ -27,12 +27,10 @@ endpoint.delete = function (url) {
     return endpoint._delete(options);
 };
 
-endpoint.getInstitutions = function() {
-	return endpoint.post('/institutions/get', {body: {"client_id": true,
-	                                                  "secret": true,
-	                                                  "count": 100,
-	                                                  "offset": 0,
-	                                                  }});
+endpoint.getInstitutions = function(count, offset, options) {
+    var body = {"client_id": true, "secret": true, "count": count, "offset": offset};
+    if (options) body.options = options;
+	return endpoint.post('/institutions/get', {body: body});
 };
 
 endpoint.getInstitutionById = function(institutionId, options) {
