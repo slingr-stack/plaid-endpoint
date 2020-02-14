@@ -5,26 +5,26 @@
       "name": "client_id",
       "label": "Client ID",
       "type": "text",
-      "required": false
+      "required": true
     },
     {
       "name": "secret",
       "label": "Secret",
       "type": "text",
-      "required": false
+      "required": true
     },
     {
       "label": "public_key",
       "name": "Public Key",
       "type": "text",
-      "required": false
+      "required": true
     },
     {
       "name": "environment",
       "label": "Environment",
       "type": "buttonsGroup",
       "multiplicity": "one",
-      "required": false,
+      "required": true,
       "defaultValue": [
         "auth",
         "transactions",
@@ -53,7 +53,7 @@
       "label": "Products",
       "type": "buttonsGroup",
       "multiplicity": "many",
-      "required": false,
+      "required": true,
       "defaultValue": [
         "auth",
         "transactions",
@@ -133,7 +133,6 @@
       "name": "_patch"
     }
   ],
-  "icon48": "https://storage.googleapis.com/static.slingrs.io/platform/endpoints/shippo.png <-- fix this",
   "internal": false,
   "label": "Plaid",
   "listeners": [],
