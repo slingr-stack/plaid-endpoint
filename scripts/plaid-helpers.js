@@ -46,6 +46,14 @@ endpoint.getAccessToken = function(publicToken) {
                                                                }});
 };
 
+endpoint.getBankAccountToken = function(accessToken, accountId) {
+    return endpoint.post('/processor/stripe/bank_account_token/create', {body: {"access_token": accessToken,
+                                                                                "account_id": accountId,
+                                                                                "client_id": true,
+                                                                                "secret": true
+                                                                                }});
+};
+
 endpoint.getItem = function(accessToken) {
     return endpoint.post('/item/get',{body: {"access_token": accessToken,
                                              "client_id": true,
